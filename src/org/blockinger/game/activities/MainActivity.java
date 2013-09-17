@@ -187,8 +187,27 @@ public class MainActivity extends ListActivity {
 				return super.onOptionsItemSelected(item);
 		}
 	}
+
+	private void persistNickname() {
+		TextView nickNameEditText = (TextView) findViewById(R.id.nicknameEditView);
+		if (null != nickNameEditText){
+			PreferenceManager.getDefaultSharedPreferences(this)
+				.edit().putString(PLAYERNAME_KEY, nickNameEditText.getText().toString()).commit();
+		}
+	}
+
+	private void restoreNickname() {
+		TextView nickNameEditText = (TextView) findViewById(R.id.nicknameEditView);
+		if (null != nickNameEditText){
+			nickNameEditText.setText(
+				PreferenceManager.getDefaultSharedPreferences(this)
+					.getString(PLAYERNAME_KEY, null)
+			);
+		}
+	}
 	
 	public void start() {
+		persistNickname();
 		Intent intent = new Intent(this, GameActivity.class);
 		Bundle b = new Bundle();
 		b.putInt("mode", GameActivity.NEW_GAME); //Your id
@@ -241,6 +260,7 @@ public class MainActivity extends ListActivity {
     }
 
     public void onClickResume(View view) {
+		persistNickname();
 		Intent intent = new Intent(this, GameActivity.class);
 		Bundle b = new Bundle();
 		b.putInt("mode", GameActivity.RESUME_GAME); //Your id
@@ -275,6 +295,7 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onResume() {
     	super.onResume();
+		restoreNickname();
     	sound.setInactive(false);
     	sound.resume();
     	datasource.open();
