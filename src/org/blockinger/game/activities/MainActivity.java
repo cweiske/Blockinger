@@ -149,6 +149,9 @@ public class MainActivity extends ListActivity {
 				startActivity(i);
 			}
 		});
+
+		Button restart = (Button)findViewById(R.id.restartButton);
+		restart.requestFocus();
 	}
 
 	@Override
@@ -234,7 +237,7 @@ public class MainActivity extends ListActivity {
 		leveldialogBar.setProgress(startLevel);
 		leveldialogtext.setText("" + startLevel);
 		startLevelDialog.setView(dialogView);
-		startLevelDialog.show();
+		startLevelDialog.show().getButton(DialogInterface.BUTTON_POSITIVE).requestFocus();
     }
 
     public void onClickResume(View view) {
@@ -281,6 +284,7 @@ public class MainActivity extends ListActivity {
 	    if(!GameState.isFinished()) {
 	    	((Button)findViewById(R.id.resumeButton)).setEnabled(true);
 	    	((Button)findViewById(R.id.resumeButton)).setTextColor(getResources().getColor(R.color.square_error));
+		((Button)findViewById(R.id.resumeButton)).requestFocus();
 	    } else {
 	    	((Button)findViewById(R.id.resumeButton)).setEnabled(false);
 	    	((Button)findViewById(R.id.resumeButton)).setTextColor(getResources().getColor(R.color.holo_grey));
