@@ -58,6 +58,7 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.view.View.OnTouchListener;
 import android.view.KeyEvent;
+import android.view.InputDevice;
 
 
 public class GameActivity extends FragmentActivity {
@@ -221,6 +222,16 @@ public class GameActivity extends FragmentActivity {
 
 		((BlockBoardView)findViewById(R.id.boardView)).init();
 		((BlockBoardView)findViewById(R.id.boardView)).setHost(this);
+		if (this.hasGameController()) {
+			//hide on-screen control buttons if we have a gamepad
+			((ImageButton)findViewById(R.id.rightButton)).setVisibility(View.INVISIBLE);
+			((ImageButton)findViewById(R.id.leftButton)).setVisibility(View.INVISIBLE);
+			((ImageButton)findViewById(R.id.softDropButton)).setVisibility(View.INVISIBLE);
+			((ImageButton)findViewById(R.id.hardDropButton)).setVisibility(View.INVISIBLE);
+			((ImageButton)findViewById(R.id.rotateRightButton)).setVisibility(View.INVISIBLE);
+			((ImageButton)findViewById(R.id.rotateLeftButton)).setVisibility(View.INVISIBLE);
+			((Button)findViewById(R.id.pausebutton_1)).setVisibility(View.INVISIBLE);
+		}
 	}
 
 	@Override
@@ -400,4 +411,21 @@ public class GameActivity extends FragmentActivity {
 		dialog.show(getSupportFragmentManager(), "hamster");
 	}
 
+	/**
+	 * Check if a game controller (gamepad/joystick) is connected
+	 */
+	protected boolean hasGameController() {
+		int[] deviceIds = InputDevice.getDeviceIds();
+		for (int deviceId : deviceIds) {
+			InputDevice dev = InputDevice.getDevice(deviceId);
+			int sources = dev.getSources();
+
+			// Verify that the device has gamepad buttons, control sticks, or both.
+			if (((sources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
+			    || ((sources & InputDevice.SOURCE_JOYSTICK)	== InputDevice.SOURCE_JOYSTICK)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
