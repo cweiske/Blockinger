@@ -227,25 +227,20 @@ public class GameActivity extends FragmentActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 			case KeyEvent.KEYCODE_DPAD_DOWN:
-			{
 				controls.downButtonPressed();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_LEFT:
-			{
 				controls.leftButtonPressed();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_RIGHT:
-			{
 				controls.rightButtonPressed();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_UP:
-			{
 				controls.rotateRightPressed();
 				return true;
-			}
 
 			case KeyEvent.KEYCODE_BUTTON_A:
 				// OUYA: O
@@ -274,25 +269,20 @@ public class GameActivity extends FragmentActivity {
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 			case KeyEvent.KEYCODE_DPAD_DOWN:
-			{
 				controls.downButtonReleased();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_LEFT:
-			{
 				controls.leftButtonReleased();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_RIGHT:
-			{
 				controls.rightButtonReleased();
 				return true;
-			}
+
 			case KeyEvent.KEYCODE_DPAD_UP:
-			{
 				controls.rotateRightReleased();
 				return true;
-			}
 
 			case KeyEvent.KEYCODE_BUTTON_A:
 				// OUYA: O
