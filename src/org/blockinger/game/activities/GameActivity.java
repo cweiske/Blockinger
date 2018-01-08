@@ -246,6 +246,26 @@ public class GameActivity extends FragmentActivity {
 				controls.rotateRightPressed();
 				return true;
 			}
+
+			case KeyEvent.KEYCODE_BUTTON_A:
+				// OUYA: O
+				controls.dropButtonPressed();
+				return true;
+
+			case KeyEvent.KEYCODE_BUTTON_X:
+				// OUYA: U
+				controls.rotateLeftPressed();
+				return true;
+
+			case KeyEvent.KEYCODE_BUTTON_B:
+				// OUYA: A
+				controls.rotateRightPressed();
+				return true;
+
+			case KeyEvent.KEYCODE_MENU:
+				// pause
+				GameActivity.this.finish();
+				return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -273,6 +293,21 @@ public class GameActivity extends FragmentActivity {
 				controls.rotateRightReleased();
 				return true;
 			}
+
+			case KeyEvent.KEYCODE_BUTTON_A:
+				// OUYA: O
+				controls.dropButtonReleased();
+				return true;
+
+			case KeyEvent.KEYCODE_BUTTON_X:
+				// OUYA: U
+				controls.rotateLeftReleased();
+				return true;
+
+			case KeyEvent.KEYCODE_BUTTON_B:
+				// OUYA: A
+				controls.rotateRightReleased();
+				return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
