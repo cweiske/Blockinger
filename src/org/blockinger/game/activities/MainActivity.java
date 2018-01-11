@@ -43,6 +43,7 @@ import org.blockinger.game.components.Sound;
 import org.blockinger.game.db.HighscoreOpenHelper;
 import org.blockinger.game.db.ScoreDataSource;
 
+import android.database.sqlite.SQLiteCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -56,6 +57,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Button;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -186,6 +188,19 @@ public class MainActivity extends ListActivity {
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	/**
+	 * Set the player name when selecting a highscore
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		SQLiteCursor cursor = (SQLiteCursor) l.getItemAtPosition(position);
+		int colPos = cursor.getColumnIndex(HighscoreOpenHelper.COLUMN_PLAYERNAME);
+		String name = cursor.getString(colPos);
+
+		TextView nickNameEditText = (TextView) findViewById(R.id.nicknameEditView);
+		nickNameEditText.setText(name);
 	}
 
 	private void persistNickname() {
