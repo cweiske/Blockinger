@@ -227,8 +227,10 @@ public class MainActivity extends ListActivity {
 		String playerName = data.getStringExtra(PLAYERNAME_KEY);
 		long score = data.getLongExtra(SCORE_KEY,0);
 
-	    datasource.open();
-	    datasource.createScore(score, playerName);
+		if (score > 0) {
+			datasource.open();
+			datasource.createScore(score, playerName);
+		}
 	}
 
 
