@@ -1,3 +1,5 @@
 /bin
 /gen
+/.idea
 /LICENSE.md
+/local.properties
