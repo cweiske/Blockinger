@@ -81,6 +81,29 @@ Plain Random:
 Resumability
 ------------
 An interrupted game is resumable as long as the "Exit" menu entry from the main menu was not pressed.
+
+
+Development
+===========
+
+Building
+--------
+To build Blockinger from source:
+
+#. Download the Android SDK
+#. ``git clone`` the Blockinger repository
+#. In the Blockinger directory, run::
+
+     $ /path/to/AndroidSdk/tools/android update project --name blockinger --path .
+
+#. Now that we have a ``build.xml`` file, compile it::
+
+     $ ant debug
+
+#. The compiled ``.apk`` file is in ``bin/blockinger-debug.apk`` now.
+#. Push it to your Android device::
+
+     $ adb push bin/blockinger-debug.apk
     
 
 About
