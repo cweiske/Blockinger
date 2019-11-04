@@ -90,7 +90,9 @@ Building
 --------
 To build Blockinger from source:
 
-#. Download the Android SDK
+#. Download the Android SDK (25.2.5, later will not work)
+   
+   See https://askubuntu.com/q/906942/15110
 #. ``git clone`` the Blockinger repository
 #. In the Blockinger directory, run::
 
